@@ -28,6 +28,12 @@ npm run preview
 
 После включения Pages GitHub Actions автоматически проверяет, собирает и публикует страницу после каждого push в `main`. Workflow: `.github/workflows/pages.yml`; его также можно запустить вручную через Actions → Publish GitHub Pages → Run workflow. В настройках репозитория Pages нужно выбрать источник **GitHub Actions**. Сборка передаётся как артефакт, поэтому `dist/` не хранится в Git.
 
+## Индексация
+
+В обеих HTML-точках входа установлен `<meta name="robots" content="noindex, nofollow">`. Перед публикацией `scripts/check-noindex.mjs` проверяет все HTML-файлы в `dist` и останавливает workflow, если запрет удалён. Не убирайте его без отдельного решения включить индексацию.
+
+Запрет применяется к странице сайта, а не к публичному репозиторию GitHub. Он не ограничивает доступ по прямой ссылке. `robots.txt` с `Disallow` не добавляется: поисковику нужно прочитать HTML, чтобы увидеть `noindex` ([документация Google](https://developers.google.com/search/docs/crawling-indexing/block-indexing)).
+
 ## Где что лежит
 
 - `src/platform-core-main.jsx` — запуск страницы с общим `DesignViewport`.
