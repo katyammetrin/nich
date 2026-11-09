@@ -22,6 +22,12 @@ npm run preview
 
 `npm run build:pages` собирает сайт с базовым путём `/nich/` для GitHub Pages. Эта команда только создаёт `dist/`, не публикует сайт.
 
+## Публикация
+
+Адрес после включения GitHub Pages: https://katyammetrin.github.io/nich/ — исходный путь `/nich/platform-core/` также поддерживается.
+
+После включения Pages GitHub Actions автоматически проверяет, собирает и публикует страницу после каждого push в `main`. Workflow: `.github/workflows/pages.yml`; его также можно запустить вручную через Actions → Publish GitHub Pages → Run workflow. В настройках репозитория Pages нужно выбрать источник **GitHub Actions**. Сборка передаётся как артефакт, поэтому `dist/` не хранится в Git.
+
 ## Где что лежит
 
 - `src/platform-core-main.jsx` — запуск страницы с общим `DesignViewport`.
